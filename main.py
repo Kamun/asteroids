@@ -13,10 +13,10 @@ def main():
 	
 	while True:
 		for event in pygame.event.get():
-			if event.type == pygame.QUIT:
+			if event.type == pygame.QUIT: # if user clicks 'x' while game is running, game will close
 				return
-		screen.fill((0,0,0))
-		pygame.display.flip()
+		screen.fill((0,0,0)) # Fill screen with black
+		pygame.display.flip() # Refresh screen
 
 if __name__ == "__main__":
 	main()
