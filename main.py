@@ -4,6 +4,9 @@
 import pygame
 from constants import *
 
+gameclock = pygame.time.Clock()
+dt = 0
+
 def main():
 	pygame.init() 	# initialize pygame libs
 	print("Starting asteroids!")
@@ -17,6 +20,8 @@ def main():
 				return
 		screen.fill((0,0,0)) # Fill screen with black
 		pygame.display.flip() # Refresh screen
+		dt = gameclock.tick(60) / 1000
+		
 
 if __name__ == "__main__":
 	main()
