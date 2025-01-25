@@ -30,13 +30,11 @@ class Player(CircleShape):
         keys = pygame.key.get_pressed()
 
         if keys[pygame.K_a]:
-            dt = dt * -1
-            self.rotate(dt)    
+            self.rotate(-dt)    
         if keys[pygame.K_d]:
             self.rotate(dt)
         if keys[pygame.K_s]:
-            dt = dt * -1
-            self.move(dt)
+            self.move(-dt)
         if keys[pygame.K_w]:
             self.move(dt)
     
