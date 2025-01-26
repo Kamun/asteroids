@@ -21,9 +21,11 @@ def main():
 	updatable = pygame.sprite.Group()
 	drawable = pygame.sprite.Group()
 	asteroids = pygame.sprite.Group()
+	shots = pygame.sprite.Group()
 	Player.containers = (updatable, drawable)
 	Asteroid.containers = (asteroids, updatable, drawable)
 	AsteroidField.containers = (updatable)
+	Shot.containers = (updatable, drawable, shots)
 	
 
 	# draw screen, set x,y as center of screen
@@ -32,7 +34,7 @@ def main():
 	y = SCREEN_HEIGHT / 2
 
 	# create player at center of screen
-	player = Player(x, y)
+	player = Player(x, y, shots)
 	# create an asteroid field
 	asteroid_field = AsteroidField()
 
@@ -48,10 +50,14 @@ def main():
 			item.draw(screen)
 		for item in updatable:
 			item.update(dt)
-		for item in asteroids:
-			if player.collision(item):
+		for asteroid in asteroids:
+			if player.collision(asteroid):
 				print("Game over!")
 				sys.exit()
+			for bullet in shots:
+				if asteroid.collision(bullet):
+					asteroid.kill()
+					bullet.kill()
 
 		pygame.display.flip() # Refresh screen
 		
